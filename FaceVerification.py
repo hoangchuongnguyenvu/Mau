@@ -153,20 +153,20 @@ def init_haar_cascade():
 
 def init_yunet_sface():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    yunet_path = os.path.join(current_dir, "face_detection_yunet_2023mar.onnx")
-    sface_path = os.path.join(current_dir, "face_recognition_sface_2021dec.onnx")
-
+    yunet_path = os.path.join(current_dir, "models", "face_detection_yunet_2023mar.onnx")
+    sface_path = os.path.join(current_dir, "models", "face_recognition_sface_2021dec.onnx")
+    
     if not os.path.exists(yunet_path) or not os.path.exists(sface_path):
         raise FileNotFoundError("YuNet or SFace model file not found")
-
-    face_detector = cv2.FaceDetectorYN.create(yunet_path, "", (0, 0), 0.6, 0.3, 1)
+        
+    face_detector = cv2.FaceDetectorYN.create(yunet_path, "", (0, 0), 0.9, 0.3, 5000)
     face_recognizer = cv2.FaceRecognizerSF.create(sface_path, "")
     
     return face_detector, face_recognizer
 
 def init_sface():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    sface_path = os.path.join(current_dir, "face_recognition_sface_2021dec.onnx")
+    sface_path = os.path.join(current_dir, "models", "face_recognition_sface_2021dec.onnx")
     if not os.path.exists(sface_path):
         raise FileNotFoundError("SFace model file not found")
     return cv2.FaceRecognizerSF.create(sface_path, "")
