@@ -100,7 +100,9 @@ st.markdown("""
 # Khởi tạo Firebase (chỉ thực hiện một lần)
 if not firebase_admin._apps:
     cred = credentials.Certificate(dict(st.secrets["firebase"]))
-    firebase_admin.initialize_app(cred)
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': 'hchuong.appspot.com'
+    })
 
 # Kết nối đến Firestore và Storage
 db = firestore.client()
