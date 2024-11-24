@@ -99,7 +99,7 @@ st.markdown("""
 
 # Khởi tạo Firebase (chỉ thực hiện một lần)
 if not firebase_admin._apps:
-    cred = credentials.Certificate(dict(st.secrets["firebase_credentials"]))
+    cred = credentials.Certificate(dict(st.secrets["firebase"]))
     firebase_admin.initialize_app(cred)
 
 # Kết nối đến Firestore và Storage
@@ -482,7 +482,7 @@ if selected_menu == "1. Quản lý Sinh viên":
                 st.rerun()
 
 elif selected_menu == "2. Xác thực Khuôn mặt":
-    st.title("Ứng dụng So sánh Ảnh Chân dung và Thẻ Sinh viên")
+    st.title("Ứng dụng So sánh nh Chân dung và Thẻ Sinh viên")
 
     haar_cascade = init_haar_cascade()
     yunet_detector, sface_recognizer = init_yunet_sface()
