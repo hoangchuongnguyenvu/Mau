@@ -16,9 +16,6 @@ MODELS_DIR = "models"
 # Đường dẫn tới config
 CONFIG_DIR = "config"
 
-# Load Firebase credentials
-cred = credentials.Certificate(os.path.join(CONFIG_DIR, "firebase_credentials.json"))
-
 # Thiết lập trang
 st.set_page_config(layout="wide", page_title="Hệ thống Quản lý Sinh viên")
 
@@ -102,7 +99,8 @@ st.markdown("""
 
 # Khởi tạo Firebase (chỉ thực hiện một lần)
 if not firebase_admin._apps:
-    firebase_admin.initialize_app(cred, {'storageBucket': 'hchuong.appspot.com'})
+    cred = credentials.Certificate(st.secrets["firebase"])
+    firebase_admin.initialize_app(cred)
 
 # Kết nối đến Firestore và Storage
 db = firestore.client()
