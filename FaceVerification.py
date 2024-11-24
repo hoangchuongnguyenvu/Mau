@@ -99,7 +99,7 @@ st.markdown("""
 
 # Khởi tạo Firebase (chỉ thực hiện một lần)
 if not firebase_admin._apps:
-    cred = credentials.Certificate(st.secrets["firebase"])
+    cred = credentials.Certificate(dict(st.secrets["firebase_credentials"]))
     firebase_admin.initialize_app(cred)
 
 # Kết nối đến Firestore và Storage
